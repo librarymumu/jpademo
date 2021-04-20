@@ -1,8 +1,11 @@
 package work.chen.jpademo.entity;
 
-import lombok.Data;
+        import com.fasterxml.jackson.annotation.JsonIgnore;
+        import lombok.Data;
 
-import javax.persistence.*;
+        import javax.persistence.*;
+        import java.util.ArrayList;
+        import java.util.List;
 
 /**
  * @ProjectName: jpa-demo
@@ -40,4 +43,7 @@ public class CustomerEntity {
   @Column(length = 11)
   private String phone;
 
+  @OneToMany(targetEntity = OrderEntity.class)
+  @JoinColumn(name = "assid", referencedColumnName = "cid",  foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT) )
+  private List<OrderEntity> orderEntities = new ArrayList<>();
 }

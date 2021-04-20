@@ -1,10 +1,8 @@
 package work.chen.jpademo.service;
 
-import org.springframework.stereotype.Service;
-import work.chen.jpademo.entity.CustomerEntity;
+import work.chen.jpademo.bean.DataCustomerListResponse;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @ProjectName: jpa-demo
@@ -17,6 +15,6 @@ import java.util.Map;
  */
 public interface CustomerService {
 
-  List<CustomerEntity> findAll();
+  List<DataCustomerListResponse> findAll();
 
 }

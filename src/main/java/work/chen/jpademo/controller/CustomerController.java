@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import work.chen.jpademo.bean.DataCustomerListResponse;
 import work.chen.jpademo.entity.CustomerEntity;
 import work.chen.jpademo.service.CustomerService;
 
@@ -32,7 +33,7 @@ public class CustomerController {
   private CustomerService customerService;
 
   @RequestMapping(value = "/findAll", method = RequestMethod.POST)
-  public List<CustomerEntity> list() {
+  public List<DataCustomerListResponse> list() {
     return customerService.findAll();
   }
 
