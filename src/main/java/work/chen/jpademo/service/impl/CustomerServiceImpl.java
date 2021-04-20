@@ -2,6 +2,10 @@ package work.chen.jpademo.service.impl;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import work.chen.jpademo.bean.DataCustomerListResponse;
@@ -10,6 +14,10 @@ import work.chen.jpademo.entity.CustomerEntity;
 import work.chen.jpademo.entity.OrderEntity;
 import work.chen.jpademo.service.CustomerService;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,5 +49,24 @@ public class CustomerServiceImpl implements CustomerService {
       response.add(dataCustomerListResponse);
     }
     return response;
+  }
+
+  @Override
+  public List<CustomerEntity> getList() {
+    return customerDao.findAll();
+  }
+
+  @Override
+  public Page<CustomerEntity> list() {
+    Page<CustomerEntity> customerEntities = customerDao.findAll(new Specification<CustomerEntity>() {
+      @Override
+      public Predicate toPredicate(Root<CustomerEntity> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+        // 查询条件
+        return null;
+
+
+      }
+    }, PageRequest.of(0, 10));
+    return customerEntities;
   }
 }

@@ -1,6 +1,7 @@
 package work.chen.jpademo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,8 +34,18 @@ public class CustomerController {
   private CustomerService customerService;
 
   @RequestMapping(value = "/findAll", method = RequestMethod.POST)
-  public List<DataCustomerListResponse> list() {
+  public List<DataCustomerListResponse> findAll() {
     return customerService.findAll();
+  }
+
+  @RequestMapping(value = "/getlist", method = RequestMethod.POST)
+  public List<CustomerEntity> getList() {
+    return customerService.getList();
+  }
+
+  @RequestMapping(value = "/list", method = RequestMethod.POST)
+  public Page<CustomerEntity> list() {
+    return customerService.list();
   }
 
 }

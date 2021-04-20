@@ -1,6 +1,8 @@
 package work.chen.jpademo.service;
 
+import org.springframework.data.domain.Page;
 import work.chen.jpademo.bean.DataCustomerListResponse;
+import work.chen.jpademo.entity.CustomerEntity;
 
 import java.util.List;
 
@@ -16,5 +18,9 @@ import java.util.List;
 public interface CustomerService {
 
   List<DataCustomerListResponse> findAll();
+
+  List<CustomerEntity> getList();
+
+  Page<CustomerEntity> list();
 
 }
