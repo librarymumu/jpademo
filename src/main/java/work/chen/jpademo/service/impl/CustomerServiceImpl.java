@@ -58,24 +58,25 @@ public class CustomerServiceImpl implements CustomerService {
   @Override
   public Page<CustomerEntity> list(DataCustomerListRequest dataCustomerListRequest) {
     // 排序字段 及 排序
-     Sort sort = null;
+     Sort sortType = null;
     if (!"".equals(dataCustomerListRequest.getSortFiled())) {
       if ("DESC".equals(dataCustomerListRequest.getSort())) {
-         sort = Sort.by(Sort.Direction.DESC,dataCustomerListRequest.getSort());
+//         sort = Sort.by(Sort.Direction.DESC,dataCustomerListRequest.getSort());
+        sortType = Sort.by(dataCustomerListRequest.getSortFiled()).descending();
       } else {
-        sort = sort.by(dataCustomerListRequest.getSort()).ascending();
+        sortType = Sort.by(dataCustomerListRequest.getSortFiled()).ascending();
       }
     } else {
-      sort = Sort.unsorted();
+      sortType = Sort.unsorted();
     }
     Page<CustomerEntity> customerEntities = customerDao.findAll((Specification<CustomerEntity>) (root, criteriaQuery, criteriaBuilder) -> {
       // 查询条件
       List<Predicate> predicates = new ArrayList<>();
       if (!"".equals(dataCustomerListRequest.getName())) {
-        predicates.add(criteriaBuilder.like(root.get("name"), dataCustomerListRequest.getName()));
+        predicates.add(criteriaBuilder.like(root.get("name"), '%' + dataCustomerListRequest.getName() + '%'));
       }
       return criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();
-    }, PageRequest.of(dataCustomerListRequest.getPage(), dataCustomerListRequest.getSize(), sort));
+    }, PageRequest.of(dataCustomerListRequest.getPage(), dataCustomerListRequest.getSize(), sortType));
     return customerEntities;
   }
 }
