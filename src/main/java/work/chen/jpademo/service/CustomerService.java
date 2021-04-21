@@ -1,6 +1,7 @@
 package work.chen.jpademo.service;
 
 import org.springframework.data.domain.Page;
+import work.chen.jpademo.bean.DataCustomerListRequest;
 import work.chen.jpademo.bean.DataCustomerListResponse;
 import work.chen.jpademo.entity.CustomerEntity;
 
@@ -21,6 +22,6 @@ public interface CustomerService {
 
   List<CustomerEntity> getList();
 
-  Page<CustomerEntity> list();
+  Page<CustomerEntity> list(DataCustomerListRequest dataCustomerListRequest);
 
 }

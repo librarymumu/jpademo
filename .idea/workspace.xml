@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15e54ac7-2ddb-4d28-b631-6553b3a54fa3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/work/chen/jpademo/bean/DataCustomerListRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/work/chen/jpademo/bean/DataCustomerListRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/work/chen/jpademo/bean/DataCustomerListRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/work/chen/jpademo/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/work/chen/jpademo/controller/CustomerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/work/chen/jpademo/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/work/chen/jpademo/service/CustomerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/work/chen/jpademo/service/impl/CustomerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/work/chen/jpademo/service/impl/CustomerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/work/chen/jpademo/controller/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/work/chen/jpademo/controller/CustomerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/work/chen/jpademo/service/CustomerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/work/chen/jpademo/service/CustomerService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/work/chen/jpademo/service/impl/CustomerServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/work/chen/jpademo/service/impl/CustomerServiceImpl.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -100,6 +98,7 @@
       <workItem from="1618836709549" duration="860000" />
       <workItem from="1618837590841" duration="8177000" />
       <workItem from="1618917869612" duration="8654000" />
+      <workItem from="1618973611789" duration="3871000" />
     </task>
     <task id="LOCAL-00001" summary="fix(Customer) 一对多查询所有">
       <created>1618924304820</created>

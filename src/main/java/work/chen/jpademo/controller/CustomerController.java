@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import work.chen.jpademo.bean.DataCustomerListRequest;
 import work.chen.jpademo.bean.DataCustomerListResponse;
 import work.chen.jpademo.entity.CustomerEntity;
 import work.chen.jpademo.service.CustomerService;
@@ -44,8 +45,8 @@ public class CustomerController {
   }
 
   @RequestMapping(value = "/list", method = RequestMethod.POST)
-  public Page<CustomerEntity> list() {
-    return customerService.list();
+  public Page<CustomerEntity> list(DataCustomerListRequest dataCustomerListRequest) {
+    return customerService.list(dataCustomerListRequest);
   }
 
 }
