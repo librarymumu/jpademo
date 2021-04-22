@@ -58,7 +58,7 @@ public class CustomerServiceImpl implements CustomerService {
   @Override
   public Page<CustomerEntity> list(DataCustomerListRequest dataCustomerListRequest) {
     // 排序字段 及 排序
-     Sort sortType = null;
+     Sort sortType;
     if (!"".equals(dataCustomerListRequest.getSortFiled())) {
       if ("DESC".equals(dataCustomerListRequest.getSort())) {
 //         sort = Sort.by(Sort.Direction.DESC,dataCustomerListRequest.getSort());
