@@ -39,14 +39,36 @@ public class CustomerController {
     return customerService.findAll();
   }
 
+
+  /**
+   * 一对多查询所有
+   * @return
+   */
   @RequestMapping(value = "/getlist", method = RequestMethod.POST)
   public List<CustomerEntity> getList() {
     return customerService.getList();
   }
 
+  /**
+   * 分页 及 多条件 排序 查询
+   * @param dataCustomerListRequest
+   * @return
+   */
   @RequestMapping(value = "/list", method = RequestMethod.POST)
   public Page<CustomerEntity> list(DataCustomerListRequest dataCustomerListRequest) {
     return customerService.list(dataCustomerListRequest);
   }
+
+  /**
+   * left join 查询
+   * @return
+   */
+  @RequestMapping(value = "/leftJoin", method = RequestMethod.POST)
+  public List<select orderentit0_.assid as assid3_0_0_, orderentit0_.oid as oid1_0_0_, orderentit0_.oid as oid1_0_1_, orderentit0_.tprice as tprice2_0_1_ from jap_order orderentit0_ where orderentit0_.assid=?
+          > leftJoin() {
+    return customerService.leftJoin();
+  }
+
+
 
 }

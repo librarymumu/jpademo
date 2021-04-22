@@ -24,4 +24,6 @@ public interface CustomerService {
 
   Page<CustomerEntity> list(DataCustomerListRequest dataCustomerListRequest);
 
+  List<CustomerEntity> leftJoin();
+
 }

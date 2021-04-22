@@ -7,7 +7,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 import work.chen.jpademo.bean.DataCustomerListRequest;
 import work.chen.jpademo.bean.DataCustomerListResponse;
 import work.chen.jpademo.dao.CustomerDao;
@@ -15,6 +14,8 @@ import work.chen.jpademo.entity.CustomerEntity;
 import work.chen.jpademo.entity.OrderEntity;
 import work.chen.jpademo.service.CustomerService;
 
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +62,6 @@ public class CustomerServiceImpl implements CustomerService {
      Sort sortType;
     if (!"".equals(dataCustomerListRequest.getSortFiled())) {
       if ("DESC".equals(dataCustomerListRequest.getSort())) {
-//         sort = Sort.by(Sort.Direction.DESC,dataCustomerListRequest.getSort());
         sortType = Sort.by(dataCustomerListRequest.getSortFiled()).descending();
       } else {
         sortType = Sort.by(dataCustomerListRequest.getSortFiled()).ascending();
@@ -78,5 +78,15 @@ public class CustomerServiceImpl implements CustomerService {
       return criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();
     }, PageRequest.of(dataCustomerListRequest.getPage(), dataCustomerListRequest.getSize(), sortType));
     return customerEntities;
+  }
+
+  @Override
+  public List<CustomerEntity> leftJoin() {
+    List<CustomerEntity> listResponses = customerDao.findAll((Specification<CustomerEntity>) (root, criteriaQuery, criteriaBuilder) -> {
+      Join<CustomerEntity, OrderEntity> entityJoin = root.join("orderEntities", JoinType.LEFT);
+      Predicate predicate = criteriaBuilder.equal(entityJoin.get("oid"), "2");
+      return predicate;
+    });
+    return listResponses;
   }
 }
