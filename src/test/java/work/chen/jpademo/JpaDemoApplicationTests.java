@@ -1,21 +1,34 @@
 package work.chen.jpademo;
 
-        import org.junit.jupiter.api.Test;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.boot.test.context.SpringBootTest;
-        import org.springframework.test.annotation.Rollback;
-        import org.springframework.transaction.annotation.Transactional;
-        import work.chen.jpademo.dao.CustomerDao;
-        import work.chen.jpademo.entity.CustomerEntity;
-        import work.chen.jpademo.entity.OrderEntity;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
+import work.chen.jpademo.dao.CustomerDao;
+import work.chen.jpademo.entity.CustomerEntity;
+import work.chen.jpademo.entity.OrderEntity;
 
-        import java.util.List;
+import java.util.List;
 
 @SpringBootTest
 class JpaDemoApplicationTests {
 
   @Autowired
   private CustomerDao customerDao;
+
+
+
+  @Autowired
+  private RedisTemplate<String,String> redisTemplate;
+
+  @Test
+  public void set(){
+    redisTemplate.opsForValue().set("myKey","myValue");
+    System.out.println(redisTemplate.opsForValue().get("myKey"));
+  }
+
 
   @Test
   @Transactional

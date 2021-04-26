@@ -4,6 +4,7 @@ package work.chen.jpademo.entity;
         import lombok.Data;
 
         import javax.persistence.*;
+        import java.io.Serializable;
         import java.util.ArrayList;
         import java.util.List;
 
@@ -19,7 +20,7 @@ package work.chen.jpademo.entity;
 @Entity
 @Table(name="jpa_customer")
 @Data
-public class CustomerEntity {
+public class CustomerEntity implements Serializable {
 
   // 主键自增
   @Id
@@ -43,7 +44,8 @@ public class CustomerEntity {
   @Column(length = 11)
   private String phone;
 
-  @OneToMany(targetEntity = OrderEntity.class)
+  @OneToMany(targetEntity = OrderEntity.class,  fetch = FetchType.EAGER)
   @JoinColumn(name = "assid", referencedColumnName = "cid",  foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT) )
+//  @JsonIgnore
   private List<OrderEntity> orderEntities = new ArrayList<>();
 }

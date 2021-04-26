@@ -18,6 +18,8 @@ import java.util.List;
  */
 public interface CustomerService {
 
+  CustomerEntity findByid(long l);
+
   List<DataCustomerListResponse> findAll();
 
   List<CustomerEntity> getList();

@@ -1,6 +1,7 @@
 package work.chen.jpademo.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -33,10 +34,26 @@ import java.util.List;
 @Transactional
 public class CustomerServiceImpl implements CustomerService {
 
+//  @Autowired
+//  private static RedisTemplate<Serializable, Serializable> redisTemplate;
+//  private RedisTemplate<String,String> redisTemplate;
+
   @Autowired
   private CustomerDao customerDao;
 
   @Override
+  @Cacheable(cacheNames = "customerEntity")
+  public CustomerEntity findByid(long l) {
+    CustomerEntity customerEntity = customerDao.findById(1L).get();
+//    CustomerEntity customerEntity = new CustomerEntity();
+//    customerEntity.setName("木木");
+//    customerEntity.setCid(3L);
+//    redisTemplate.opsForValue().set("customerEntity", JSON.toJSONString(customerEntity));
+    return customerEntity;
+  }
+
+  @Override
+  @Cacheable(cacheNames = "findAll")
   public List<DataCustomerListResponse> findAll() {
     List<DataCustomerListResponse> response = new ArrayList<>();
     DataCustomerListResponse dataCustomerListResponse = new DataCustomerListResponse();
@@ -52,7 +69,9 @@ public class CustomerServiceImpl implements CustomerService {
 
   @Override
   public List<CustomerEntity> getList() {
-    return customerDao.findAll();
+    List<CustomerEntity> entities = customerDao.findAll();
+//    redisTemplate.opsForSet().add("entities", entities);
+    return entities;
   }
 
 

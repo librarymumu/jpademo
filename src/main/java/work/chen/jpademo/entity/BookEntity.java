@@ -40,11 +40,11 @@ public class BookEntity implements Serializable {
 	@Column(length = 1000)
 	private String introduce;
 
-	/**
-	 * b_lid : 两表关联字段 属于从表字段
-	 */
-	@ManyToOne
-	@JoinColumn(name = "assid", referencedColumnName = "lid", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
-	private LibraryEntity libraryEntity;
+//	/**
+//	 * b_lid : 两表关联字段 属于从表字段
+//	 */
+//	@ManyToOne
+//	@JoinColumn(name = "assid", referencedColumnName = "lid", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+//	private LibraryEntity libraryEntity;
 
 }

@@ -3,6 +3,7 @@ package work.chen.jpademo.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -17,7 +18,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "jap_order")
 @Data
-public class OrderEntity {
+public class OrderEntity implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,5 +35,7 @@ public class OrderEntity {
 //   *    name : 目标字段 参考 主表关联字段
 //   *    referencedColumnName : 本表字段名
 //   */
+//  @ManyToOne(fetch = FetchType.LAZY)
+//  @JoinColumn(name = "assid", referencedColumnName = "cid", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT) )
 //  private CustomerEntity customerEntity;
 }

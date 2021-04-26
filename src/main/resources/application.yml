@@ -14,7 +14,7 @@ spring:
     druid:
       initial-size: 1
       min-idle: 1
-      max-active: 20
+      max-active: 5
       max-wait: 60000
       time-between-eviction-runsMillis: 60000
       min-evictable-idle-timeMillis: 300000
@@ -24,7 +24,7 @@ spring:
       test-on-return: false
       pool-prepared-statements: true
       max-open-prepared-statements: 20
-      max-pool-prepared-statement-per-connection-size: 20
+      max-pool-prepared-statement-per-connection-size: 5
       filters: stat
       connection-properties: druid.stat.mergeSql=false;druid.stat.slowSqlMillis=5000
       use-global-data-source-stat: true
@@ -36,3 +36,11 @@ spring:
     hibernate:
       ddl-auto: none
     open-in-view: true
+
+  redis:
+    host: 47.102.143.25
+    port: 6379
+    timeout: 6000
+    jedis:
+      pool:
+        max-active: 4

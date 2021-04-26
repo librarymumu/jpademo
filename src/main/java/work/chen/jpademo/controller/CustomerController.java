@@ -34,6 +34,11 @@ public class CustomerController {
   @Autowired
   private CustomerService customerService;
 
+  @RequestMapping(value = "/findByid", method = RequestMethod.POST)
+  public CustomerEntity findByid(){
+    return customerService.findByid(1l);
+  }
+
   @RequestMapping(value = "/findAll", method = RequestMethod.POST)
   public List<DataCustomerListResponse> findAll() {
     return customerService.findAll();
@@ -64,8 +69,7 @@ public class CustomerController {
    * @return
    */
   @RequestMapping(value = "/leftJoin", method = RequestMethod.POST)
-  public List<select orderentit0_.assid as assid3_0_0_, orderentit0_.oid as oid1_0_0_, orderentit0_.oid as oid1_0_1_, orderentit0_.tprice as tprice2_0_1_ from jap_order orderentit0_ where orderentit0_.assid=?
-          > leftJoin() {
+  public List<CustomerEntity> leftJoin() {
     return customerService.leftJoin();
   }
 
