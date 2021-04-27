@@ -8,5 +8,7 @@ public interface SingleTestService {
 
 	List<SingleTestEntity> findAll();
 
+	SingleTestEntity findById(long id);
 
+	SingleTestEntity update(long id);
 }

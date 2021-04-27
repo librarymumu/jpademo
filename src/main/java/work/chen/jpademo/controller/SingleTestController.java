@@ -20,4 +20,14 @@ public class SingleTestController {
 	public List<SingleTestEntity> findAll() {
 		return singleTestService.findAll();
 	}
+
+	@RequestMapping(value = "/findById", method = RequestMethod.POST)
+	public SingleTestEntity findById(long id) {
+		return singleTestService.findById(id);
+	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public SingleTestEntity update(long id) {
+		 return singleTestService.update(id);
+	}
 }
