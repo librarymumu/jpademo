@@ -18,9 +18,13 @@ import java.util.List;
  */
 public interface CustomerService {
 
-  CustomerEntity findByid(long l);
+  /**
+   * 查询所有
+   * @return
+   */
+  List<CustomerEntity> findAll();
 
-  List<DataCustomerListResponse> findAll();
+  CustomerEntity findByid(long l);
 
   List<CustomerEntity> getList();
 

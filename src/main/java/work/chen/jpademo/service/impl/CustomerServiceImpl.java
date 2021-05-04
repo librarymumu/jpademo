@@ -9,7 +9,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import work.chen.jpademo.bean.DataCustomerListRequest;
-import work.chen.jpademo.bean.DataCustomerListResponse;
 import work.chen.jpademo.dao.CustomerDao;
 import work.chen.jpademo.entity.CustomerEntity;
 import work.chen.jpademo.entity.OrderEntity;
@@ -34,12 +33,14 @@ import java.util.List;
 @Transactional
 public class CustomerServiceImpl implements CustomerService {
 
-//  @Autowired
-//  private static RedisTemplate<Serializable, Serializable> redisTemplate;
-//  private RedisTemplate<String,String> redisTemplate;
 
   @Autowired
   private CustomerDao customerDao;
+
+  @Override
+  public List<CustomerEntity> findAll() {
+    return customerDao.findAll();
+  }
 
   @Override
   @Cacheable(cacheNames = "customerEntity")
@@ -52,20 +53,6 @@ public class CustomerServiceImpl implements CustomerService {
     return customerEntity;
   }
 
-  @Override
-  @Cacheable(cacheNames = "findAll")
-  public List<DataCustomerListResponse> findAll() {
-    List<DataCustomerListResponse> response = new ArrayList<>();
-    DataCustomerListResponse dataCustomerListResponse = new DataCustomerListResponse();
-    List<CustomerEntity> customerEntities = customerDao.findAll();
-    for(CustomerEntity customerEntity : customerEntities) {
-      List<OrderEntity> orderEntities = customerEntity.getOrderEntities();
-      dataCustomerListResponse.setCustomerEntity(customerEntity);
-      dataCustomerListResponse.setOrderEntities(orderEntities);
-      response.add(dataCustomerListResponse);
-    }
-    return response;
-  }
 
   @Override
   public List<CustomerEntity> getList() {

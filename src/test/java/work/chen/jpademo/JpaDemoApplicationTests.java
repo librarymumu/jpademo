@@ -7,16 +7,17 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import work.chen.jpademo.dao.CustomerDao;
-import work.chen.jpademo.entity.CustomerEntity;
-import work.chen.jpademo.entity.OrderEntity;
-
-import java.util.List;
+import work.chen.jpademo.dao.LibraryDao;
+import work.chen.jpademo.entity.LibraryEntity;
 
 @SpringBootTest
 class JpaDemoApplicationTests {
 
   @Autowired
   private CustomerDao customerDao;
+
+  @Autowired
+  private LibraryDao libraryDao;
 
 
 
@@ -33,14 +34,9 @@ class JpaDemoApplicationTests {
   @Test
   @Transactional
   @Rollback(false)
-  void testSelect() {
-    List<CustomerEntity> customerEntities = customerDao.findAll();
-    for(CustomerEntity customerEntity : customerEntities) {
-      List<OrderEntity> orderEntities = customerEntity.getOrderEntities();
-      for(OrderEntity orderEntity : orderEntities) {
-        System.out.println(orderEntity);
-      }
-    }
+  public void LibrarySelect() {
+    LibraryEntity libraryEntity = libraryDao.getOne(1L);
+    System.out.println(libraryEntity);
   }
 
 }

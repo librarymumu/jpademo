@@ -1,12 +1,11 @@
 package work.chen.jpademo.entity;
 
-        import com.fasterxml.jackson.annotation.JsonIgnore;
-        import lombok.Data;
+import lombok.Data;
 
-        import javax.persistence.*;
-        import java.io.Serializable;
-        import java.util.ArrayList;
-        import java.util.List;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @ProjectName: jpa-demo
@@ -26,10 +25,9 @@ public class CustomerEntity implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(length = 11)
-  private long cid;
+  private long id;
 
   // 客户姓名
-  @Column(length = 255)
   private String name;
 
   // 客户性别 0： 男  1： 女
@@ -44,8 +42,20 @@ public class CustomerEntity implements Serializable {
   @Column(length = 11)
   private String phone;
 
-  @OneToMany(targetEntity = OrderEntity.class,  fetch = FetchType.EAGER)
-  @JoinColumn(name = "assid", referencedColumnName = "cid",  foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT) )
-//  @JsonIgnore
-  private List<OrderEntity> orderEntities = new ArrayList<>();
+  /**
+   *  @OneToMany
+   *    targetEntity : 需要关联的目标实体类字节码文件
+   *    fetch
+   *      fetch = FetchType.EAGER 立即加载
+   *      fetch = FetchType.LAZY  延迟加载
+   *
+   *  @JoinColumn
+   *    name ： 关联字段名称 （在从表中显示）
+   *    referencedColumnName ： 主表中与从表中的关联字段（一般是主表的主键）
+   *  foreignKey
+   *    @ForeignKey(value = ConstraintMode.NO_CONSTRAINT) 取消数据库中外键关联
+   */
+  @OneToMany(targetEntity = OrderEntity.class, fetch = FetchType.LAZY)
+  @JoinColumn(name = "assid", referencedColumnName = "id",  foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT) )
+  private Set<OrderEntity> orderEntities = new HashSet<>();
 }

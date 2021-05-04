@@ -34,16 +34,22 @@ public class CustomerController {
   @Autowired
   private CustomerService customerService;
 
+
+  /**
+   * Hibernate: select customeren0_.id as id1_2_, customeren0_.age as age2_2_, customeren0_.name as name3_2_, customeren0_.phone as phone4_2_, customeren0_.sex as sex5_2_ from jpa_customer customeren0_
+   * Hibernate: select orderentit0_.assid as assid3_0_0_, orderentit0_.oid as oid1_0_0_, orderentit0_.oid as oid1_0_1_, orderentit0_.tprice as tprice2_0_1_ from jap_order orderentit0_ where orderentit0_.assid=?
+   * Hibernate: select orderentit0_.assid as assid3_0_0_, orderentit0_.oid as oid1_0_0_, orderentit0_.oid as oid1_0_1_, orderentit0_.tprice as tprice2_0_1_ from jap_order orderentit0_ where orderentit0_.assid=?
+   * 查询 1 + N 次 （N表示主表中的数据数量）
+   */
+  @RequestMapping(value = "/findAll", method = RequestMethod.POST)
+  public List<CustomerEntity> findAll() {
+    return customerService.findAll();
+  }
+
   @RequestMapping(value = "/findByid", method = RequestMethod.POST)
   public CustomerEntity findByid(){
     return customerService.findByid(1l);
   }
-
-  @RequestMapping(value = "/findAll", method = RequestMethod.POST)
-  public List<DataCustomerListResponse> findAll() {
-    return customerService.findAll();
-  }
-
 
   /**
    * 一对多查询所有

@@ -1,14 +1,16 @@
 package work.chen.jpademo.entity;
 
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Setter
+@Getter
 @Entity
 @Table(name = "jpa_library")
 public class LibraryEntity implements Serializable {
@@ -38,8 +40,7 @@ public class LibraryEntity implements Serializable {
 	@Column(length = 11)
 	private String tel;
 
-	@OneToMany(targetEntity = BookEntity.class, fetch = FetchType.LAZY)
-	@JoinColumn(name = "assid", referencedColumnName = "lid", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+	@OneToMany(mappedBy = "libraryEntity")
 	private Set<BookEntity> bookEntities = new HashSet<>();
 
 }
