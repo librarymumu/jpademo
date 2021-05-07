@@ -69,9 +69,9 @@ public class LibraryServiceImpl implements LibraryService {
 	@Override
 	public List<DataLibraryListResponse> getLibraryAndBookData() {
 		List<DataLibraryListResponse> responses = new ArrayList<>();
-		DataLibraryListResponse dataLibraryListResponse = new DataLibraryListResponse();
 		List<LibraryEntity> libraryEntities = libraryDao.findAll();
 		for (LibraryEntity libraryEntity : libraryEntities) {
+			DataLibraryListResponse dataLibraryListResponse = new DataLibraryListResponse();
 			dataLibraryListResponse.setLibraryEntity(libraryEntity);
 			List<BookEntity> bookEntities = libraryEntity.getBookEntities();
 			dataLibraryListResponse.setBookEntities(bookEntities);
