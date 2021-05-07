@@ -54,8 +54,11 @@ public class CustomerEntity implements Serializable {
    *    referencedColumnName ： 主表中与从表中的关联字段（一般是主表的主键）
    *  foreignKey
    *    @ForeignKey(value = ConstraintMode.NO_CONSTRAINT) 取消数据库中外键关联
+   *
+   *  cascade
+   *    级联操作
    */
-  @OneToMany(targetEntity = OrderEntity.class, fetch = FetchType.LAZY)
-  @JoinColumn(name = "assid", referencedColumnName = "id",  foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT) )
+  @OneToMany(targetEntity = OrderEntity.class, cascade = CascadeType.ALL)
+  @JoinColumn(name = "cid", referencedColumnName = "id",  foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT) )
   private Set<OrderEntity> orderEntities = new HashSet<>();
 }

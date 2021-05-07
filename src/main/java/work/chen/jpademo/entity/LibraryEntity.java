@@ -1,19 +1,19 @@
 package work.chen.jpademo.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
 @Entity
 @Table(name = "jpa_library")
-public class LibraryEntity implements Serializable {
+public class LibraryEntity {
 
 	/**
 	 * 自增主键
@@ -40,7 +40,15 @@ public class LibraryEntity implements Serializable {
 	@Column(length = 11)
 	private String tel;
 
+	/**
+	 * 放弃关联维护 - 参照对方的关系进行维护
+	 * JsonIgnore ： json 在序列化的时候 忽略bookEntities属性
+	 */
+//	@OneToMany(targetEntity = BookEntity.class)
+//	@JoinColumn(name = "assid", referencedColumnName = "lid", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
 	@OneToMany(mappedBy = "libraryEntity")
-	private Set<BookEntity> bookEntities = new HashSet<>();
+	@JsonIgnore
+	private List<BookEntity> bookEntities = new ArrayList<>();
+
 
 }

@@ -18,6 +18,13 @@ import java.util.List;
  */
 public interface CustomerService {
 
+
+  /**
+   * 模拟保存
+   * @return
+   */
+  int saveCustomerAndOrder();
+
   /**
    * 查询所有
    * @return

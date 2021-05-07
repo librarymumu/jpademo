@@ -17,8 +17,10 @@ import work.chen.jpademo.service.CustomerService;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @ProjectName: jpa-demo
@@ -36,6 +38,23 @@ public class CustomerServiceImpl implements CustomerService {
 
   @Autowired
   private CustomerDao customerDao;
+
+  @Override
+  public int saveCustomerAndOrder() {
+    CustomerEntity customerEntity = new CustomerEntity();
+    OrderEntity orderEntity = new OrderEntity();
+    orderEntity.setTprice(new BigDecimal(3476.23));
+    customerEntity.setName("张三");
+    customerEntity.setAge(16);
+    customerEntity.setPhone("19890989761");
+    customerEntity.setSex("1");
+    customerEntity.getOrderEntities().add(orderEntity);
+    CustomerEntity entity = customerDao.save(customerEntity);
+    if (entity != null) {
+      return 1;
+    }
+    return 0;
+  }
 
   @Override
   public List<CustomerEntity> findAll() {
@@ -90,7 +109,7 @@ public class CustomerServiceImpl implements CustomerService {
   public List<CustomerEntity> leftJoin() {
     List<CustomerEntity> listResponses = customerDao.findAll((Specification<CustomerEntity>) (root, criteriaQuery, criteriaBuilder) -> {
       Join<CustomerEntity, OrderEntity> entityJoin = root.join("orderEntities", JoinType.LEFT);
-      Predicate predicate = criteriaBuilder.equal(entityJoin.get("oid"), "2");
+      Predicate predicate = criteriaBuilder.equal(entityJoin.get("oid"), "3");
       return predicate;
     });
     return listResponses;

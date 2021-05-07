@@ -1,5 +1,6 @@
 package work.chen.jpademo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,11 +8,11 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 //@Data
+@Entity
 @Setter
 @Getter
-@Entity
 @Table(name = "jpa_book")
-public class BookEntity implements Serializable {
+public class BookEntity {
 
 	/**
 	 * 自增主键
@@ -45,6 +46,8 @@ public class BookEntity implements Serializable {
 
 	@ManyToOne(targetEntity = LibraryEntity.class)
 	@JoinColumn(name = "assid", referencedColumnName = "lid", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+	@JsonIgnore
 	private LibraryEntity libraryEntity;
+
 
 }
