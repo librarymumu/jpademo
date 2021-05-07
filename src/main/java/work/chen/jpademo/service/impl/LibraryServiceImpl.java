@@ -51,6 +51,17 @@ public class LibraryServiceImpl implements LibraryService {
 	}
 
 	@Override
+	public LibraryEntity update() {
+		/**
+		 * 部分更新 - 先查 在统一更新 否则 不为空的数据 会被更新为空
+		 */
+		LibraryEntity libraryEntity = libraryDao.findById(7L).get();
+		libraryEntity.setAddress("长沙");
+		LibraryEntity entity = libraryDao.save(libraryEntity);
+		return entity;
+	}
+
+	@Override
 	public List<LibraryEntity> findAll() {
 		return libraryDao.findAll();
 	}

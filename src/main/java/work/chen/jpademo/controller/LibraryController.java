@@ -18,11 +18,24 @@ public class LibraryController {
 	private LibraryService libraryService;
 
 
+	/**
+	 * 模拟保存
+	 * @return
+	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public LibraryEntity save() {
 		return libraryService.save();
 	}
 
+
+	/**
+	 * 模拟 根据 主键 更新
+	 * @return
+	 */
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public LibraryEntity update() {
+		return libraryService.update();
+	}
 
 	/**
 	 * 只查询主表数据

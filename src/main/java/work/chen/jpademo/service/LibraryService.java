@@ -9,6 +9,8 @@ public interface LibraryService {
 
 	LibraryEntity save();
 
+	LibraryEntity update();
+
 	List<LibraryEntity> findAll();
 
 	List<DataLibraryListResponse> getLibraryAndBookData();
