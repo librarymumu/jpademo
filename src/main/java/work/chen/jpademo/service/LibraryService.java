@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface LibraryService {
 
+	LibraryEntity save();
+
 	List<LibraryEntity> findAll();
 
 	List<DataLibraryListResponse> getLibraryAndBookData();

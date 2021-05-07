@@ -17,12 +17,27 @@ public class LibraryController {
 	@Autowired
 	private LibraryService libraryService;
 
+
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public LibraryEntity save() {
+		return libraryService.save();
+	}
+
+
+	/**
+	 * 只查询主表数据
+	 * @return
+	 */
 	@RequestMapping(value = "/findAll", method = RequestMethod.POST)
 	public List<LibraryEntity> findAll() {
 		return libraryService.findAll();
 	}
 
 
+	/**
+	 * 查询主表数据及从表数据
+	 * @return
+	 */
 	@RequestMapping(value = "/findLibrayAndBookData", method = RequestMethod.POST)
 	public List<DataLibraryListResponse> findLibrayAndBookData() {
 		return libraryService.getLibraryAndBookData();

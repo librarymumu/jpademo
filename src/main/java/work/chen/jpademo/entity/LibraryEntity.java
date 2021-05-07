@@ -46,7 +46,11 @@ public class LibraryEntity {
 	 */
 //	@OneToMany(targetEntity = BookEntity.class)
 //	@JoinColumn(name = "assid", referencedColumnName = "lid", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
-	@OneToMany(mappedBy = "libraryEntity")
+	/**
+	 * cascade 级联操作 - CascadeType.ALL （相当于 ）
+	 *
+	 */
+	@OneToMany(mappedBy = "libraryEntity", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<BookEntity> bookEntities = new ArrayList<>();
 

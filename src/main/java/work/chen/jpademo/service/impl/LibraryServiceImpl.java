@@ -20,6 +20,37 @@ public class LibraryServiceImpl implements LibraryService {
 	private LibraryDao libraryDao;
 
 	@Override
+	public LibraryEntity save() {
+		LibraryEntity libraryEntity = new LibraryEntity();
+		BookEntity bookEntity = new BookEntity();
+		BookEntity bookEntity1 = new BookEntity();
+		List<BookEntity> bookEntities = new ArrayList<>();
+		libraryEntity.setLibraryname("名称002");
+		libraryEntity.setAddress("无锡市");
+		libraryEntity.setTel("1909897");
+		bookEntity.setAuthor("作者002");
+		bookEntity.setBookpagesize(345);
+		bookEntity.setIntroduce("测试数据简介");
+		bookEntity1.setAuthor("作者002");
+		bookEntity1.setBookpagesize(345);
+		bookEntity1.setIntroduce("测试数据简介");
+		bookEntities.add(bookEntity);
+		bookEntities.add(bookEntity1);
+		/**
+		 * 绑定关系 ：
+		 * 		一定要双向绑定 否则 从表数据关联键会是空值
+		 */
+		libraryEntity.setBookEntities(bookEntities);
+		bookEntity.setLibraryEntity(libraryEntity);
+		bookEntity1.setLibraryEntity(libraryEntity);
+		/**
+		 * 需要在 LibraryEntity 中配置级联操作 否则只会保存对应Entity的数据
+		 */
+		LibraryEntity entity = libraryDao.save(libraryEntity);
+		return entity;
+	}
+
+	@Override
 	public List<LibraryEntity> findAll() {
 		return libraryDao.findAll();
 	}
