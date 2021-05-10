@@ -1,0 +1,28 @@
+# Created by .ignore support plugin (hsz.mobi)
+*.class
+*.log
+*.classpath
+*.project
+.settings/
+target/
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+.DS_Store
+# Package Files #
+*.jar
+*.war
+*.ear
+.vscode
+
+# virtual machine crash logs
+hs_err_pid*
+/bin
+/.apt_generated/
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.idea/
+.springBeans
+.iml
